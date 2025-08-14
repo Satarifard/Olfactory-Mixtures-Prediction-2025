@@ -1,14 +1,7 @@
 # Learning Odor Quality Across Concentrations and Mixtures
 
-Project page: [Link]([https://www.synapse.org/Synapse:syn61941777/wiki/629245])
 
-Vahid Satarifard ^1^, Laura Sisson ^2^
-
-1 – Yale Institute for Network Science, Yale University, New Haven, CT, USA
-2 – Department of Computer Science, Boston University, Boston, MA, USA
-
-
-
+Project page: [Link](https://www.synapse.org/Synapse:syn64743570/wiki/630800)
 ## Summary
 For Task 1, we train CatBoost via Optuna using Mordred-Morgan descriptors, dilutions, and flags to predict odor perception across concentrations. For Task 2, we fine-tune a graph neural network pre-trained on aroma-chemical pairs to predict odor perception for blends of aroma-chemicals.
 
