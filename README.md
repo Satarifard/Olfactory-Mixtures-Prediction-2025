@@ -1,11 +1,15 @@
-# Learning Odor Quality Across Concentrations and Mixtures
+# Learning Odor Quality Across Concentrations and Mixtures — LVS2
 
+This repository contains the LVS2 team’s model for the 2025 DREAM Olfactory Mixtures Prediction Challenge, developed by Vahid Satarifard and Laura Sisson. **Project page:** [Synapse (syn64743570)](https://www.synapse.org/Synapse:syn64743570/wiki/630800)
+
+**Task 1:** Predict how odor quality changes with concentration for 151 monomolecular odorants using 51-term RATA profiles (two intensity levels per odorant).  
+**Task 2:** Predict full 51-term odor profiles for >650 mixtures (sizes 2, 3, 5, 10) composed from a pool of >145 odorants.
 
 Project page: [Link](https://www.synapse.org/Synapse:syn64743570/wiki/630800)
 ## Summary
 For Task 1, we train CatBoost via Optuna using Mordred-Morgan descriptors, dilutions, and flags to predict odor perception across concentrations. For Task 2, we fine-tune a graph neural network pre-trained on aroma-chemical pairs to predict odor perception for blends of aroma-chemicals.
 
-## Background/Introduction
+## Background
 Despite advances in modeling odor perception for single molecules [2,3], predicting how odor profiles shift across concentration remains unresolved.
 For Task 1, we treated the change in concentration as a translation problem: an Optuna-tuned CatBoost regressor learned to map the 51-dimensional rate-all-that-apply (RATA) profile at one concentration to that at another, using Mordred descriptors, Morgan fingerprints, dilution scalars, and direction flags indicating High→Low or Low→High prediction.
 
@@ -28,7 +32,7 @@ Molecules were converted to PyTorch Geometric graphs (Open Graph Benchmark utili
 
 **Model Training and Prediction:** We initialized a new descriptor prediction head and trained with the loss: gamma * MSE + (1.0 - gamma) * cosine_distance. Early stopping (min_delta = 1e-4) prevented reaching the 500-epoch cap. Hyperparameters (learning rate, weight decay, warmup, xi, gamma, target caps, MLP flag) were tuned via Optuna with 3-fold ShuffleSplit, maximizing (Pearson – cosine distance). The best trial achieved mean Pearson r = 0.700 and cosine distance = 0.187. Final test predictions averaged over the 3 folds.
 
-## Conclusion/Discussion
+## Conclusion
 We approached the two tasks using different machine learning techniques.
 For Task 1, we framed concentration change as a translation between paired RATA profiles, enabling CatBoost to exploit molecular structure and perceptual context. GroupKFold splitting avoided High/Low leakage. The best trial achieved Pearson r = 0.635 and cosine distance = 0.244; final predictions averaged over 5 folds. The approach captured concentration-dependent perceptual shifts by combining descriptors, dilution scalars, direction flags, and known odour profiles.
 
