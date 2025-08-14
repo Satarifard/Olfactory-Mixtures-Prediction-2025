@@ -1,11 +1,10 @@
-# Learning Odor Quality Across Concentrations and Mixtures — LVS2
+# Learning Odor Quality Across Concentrations and Mixtures
 
 This repository contains the LVS2 team’s model for the 2025 DREAM Olfactory Mixtures Prediction Challenge, developed by Vahid Satarifard and Laura Sisson. **Project page:** [Synapse (syn64743570)](https://www.synapse.org/Synapse:syn64743570/wiki/630800)
 
 **Task 1:** Predict how odor quality changes with concentration for 151 monomolecular odorants using 51-term RATA profiles (two intensity levels per odorant).  
 **Task 2:** Predict full 51-term odor profiles for >650 mixtures (sizes 2, 3, 5, 10) composed from a pool of >145 odorants.
 
-Project page: [Link](https://www.synapse.org/Synapse:syn64743570/wiki/630800)
 ## Summary
 For Task 1, we train CatBoost via Optuna using Mordred-Morgan descriptors, dilutions, and flags to predict odor perception across concentrations. For Task 2, we fine-tune a graph neural network pre-trained on aroma-chemical pairs to predict odor perception for blends of aroma-chemicals.
 
